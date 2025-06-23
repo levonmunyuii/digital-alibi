@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Alibi</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      background-color: #161b22;
+      border-bottom: 1px solid #30363d;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #161b22;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      font-size: 1rem;
+    }
+    .output {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #21262d;
+      border: 1px solid #30363d;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Digital Alibi</h1>
+    <p>Generate a fake digital trail — for entertainment purposes only.</p>
+  </header>
+  <div class="container">
+    <div class="form-group">
+      <label for="platform">Choose Platform</label>
+      <select id="platform">
+        <option value="twitter">Twitter</option>
+        <option value="text">Text Message</option>
+        <option value="location">Location Check-In</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="datetime">Date and Time</label>
+      <input type="datetime-local" id="datetime" />
+    </div>
+    <button onclick="generateAlibi()">Generate Alibi</button>
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    function generateAlibi() {
+      const platform = document.getElementById('platform').value;
+      const datetime = new Date(document.getElementById('datetime').value);
+      const output = document.getElementById('output');
+
+      const timeString = datetime.toLocaleString('en-US');
+
+      let message = '';
+      if (platform === 'twitter') {
+        message = `📱 [Twitter] @you: "Late night snacks > bad decisions 🍫🕛"\n📍 Posted on ${timeString}`;
+      } else if (platform === 'text') {
+        message = `💬 [Text] You: "I'm just chillin' at home rn."\n🕒 Sent on ${timeString}`;
+      } else if (platform === 'location') {
+        message = `📍 [Location Check-In] You were at "The Bodega, Brooklyn"\n🕒 Logged on ${timeString}`;
+      }
+
+      output.textContent = message;
+    }
+  </script>
+</body>
+</html>
